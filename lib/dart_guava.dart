@@ -2,3 +2,4 @@
 library;
 
 export 'src/check/check.dart';
+export 'src/string/string_format.dart';

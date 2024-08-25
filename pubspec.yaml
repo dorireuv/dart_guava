@@ -1,6 +1,6 @@
 name: dart_guava
 description: Common libraries for dart based on Java's Guava library.
-version: 1.0.0
+version: 1.0.1
 repository: https://github.com/dorireuv/dart_guava
 
 environment:

@@ -49,6 +49,8 @@ final class IntRange {
 
   bool isIn(int v) => v >= min && v <= max;
 
+  bool isNotIn(int v) => !isIn(v);
+
   @override
   String toString() {
     if (_from.value == lowest && _to.value == highest) {

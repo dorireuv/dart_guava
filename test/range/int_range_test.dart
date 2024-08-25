@@ -134,4 +134,21 @@ void main() {
     expect(range.isIn(0), isTrue);
     expect(range.isIn(IntRange.highest), isTrue);
   });
+
+  test('isNotIn', () {
+    final range = IntRange.closed(-3, 3);
+
+    expect(range.toString(), '[-3, 3]');
+
+    expect(range.min, -3);
+    expect(range.max, 3);
+
+    expect(range.isNotIn(-4), isTrue);
+    expect(range.isNotIn(-3), isFalse);
+    expect(range.isNotIn(-2), isFalse);
+    expect(range.isNotIn(0), isFalse);
+    expect(range.isNotIn(2), isFalse);
+    expect(range.isNotIn(3), isFalse);
+    expect(range.isNotIn(4), isTrue);
+  });
 }

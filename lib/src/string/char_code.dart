@@ -5,6 +5,7 @@ final class CharCodes {
   static const bs = 0x08;
   static const lf = 0x0A;
   static const cr = 0x0D;
+  static const esc = 0x1B;
   static const del = 0x7F;
 
   /// Printable characters.

@@ -12,5 +12,10 @@ final class CharCodes {
   static const zero = 0x30;
   static const nine = 0x39;
 
+  static bool isControlCharacter(int charCode) =>
+      charCode < space || charCode == del;
+
+  static bool isPrintable(int charCode) => !isControlCharacter(charCode);
+
   static bool isDigit(int charCode) => charCode >= zero && charCode <= nine;
 }

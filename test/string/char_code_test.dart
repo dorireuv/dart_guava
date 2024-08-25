@@ -22,4 +22,28 @@ void main() {
       expect(CharCodes.isDigit(CharCodes.space), isFalse);
     });
   });
+
+  group('isControlCharacter', () {
+    test('control character -> true', () {
+      expect(CharCodes.isControlCharacter(CharCodes.del), isTrue);
+      expect(CharCodes.isControlCharacter(CharCodes.cr), isTrue);
+    });
+
+    test('non control character -> false', () {
+      expect(CharCodes.isControlCharacter('a'.codeUnitAt(0)), isFalse);
+      expect(CharCodes.isControlCharacter(CharCodes.space), isFalse);
+    });
+  });
+
+  group('isPrintable', () {
+    test('printable -> true', () {
+      expect(CharCodes.isPrintable('a'.codeUnitAt(0)), isTrue);
+      expect(CharCodes.isPrintable(CharCodes.space), isTrue);
+    });
+
+    test('non printable -> false', () {
+      expect(CharCodes.isPrintable(CharCodes.del), isFalse);
+      expect(CharCodes.isPrintable(CharCodes.cr), isFalse);
+    });
+  });
 }

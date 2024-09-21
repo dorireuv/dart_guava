@@ -17,9 +17,11 @@ class ListNotifier<KEY, T> implements ListListenable<KEY, T> {
   Listenable<void> anyListenable() => _anyNotifier;
 
   void notify(KEY key, T v) {
-    _anyNotifier.notify(null);
     _notifier(key).notify(v);
+    notifyAny();
   }
+
+  void notifyAny() => _anyNotifier.notify(null);
 
   Notifier<T> _notifier(KEY key) =>
       _notifiers.putIfAbsent(key, () => Notifier<T>());

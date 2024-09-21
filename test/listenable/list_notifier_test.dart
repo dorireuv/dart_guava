@@ -66,4 +66,37 @@ void main() {
       verify(anyCallback(null)).called(1);
     });
   });
+
+  group('notifyAny', () {
+    test('no listeners returns normally', () {
+      expect(() => notifier.notifyAny(), returnsNormally);
+    });
+
+    test('single listener notifies', () {
+      final callback = FakeModelChangeCallbackMock();
+      final anyCallback = FakeModelChangeCallbackMock();
+      listenable.listenable(1).addListener(callback);
+      listenable.anyListenable().addListener(anyCallback);
+
+      notifier.notifyAny();
+
+      verifyNever(callback(null));
+      verify(anyCallback(null)).called(1);
+    });
+
+    test('multiple listeners notifies', () {
+      final callback = FakeModelChangeCallbackMock();
+      final anyCallback1 = FakeModelChangeCallbackMock();
+      final anyCallback2 = FakeModelChangeCallbackMock();
+      listenable.listenable(1).addListener(callback);
+      listenable.anyListenable().addListener(anyCallback1);
+      listenable.anyListenable().addListener(anyCallback2);
+
+      notifier.notifyAny();
+
+      verifyNever(callback(null));
+      verify(anyCallback1(null)).called(1);
+      verify(anyCallback2(null)).called(1);
+    });
+  });
 }

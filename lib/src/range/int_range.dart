@@ -1,6 +1,6 @@
 final class IntRange {
   static const lowest = -0x8000000000000000;
-  static const highest = 0x7FFFFFFFFFFFFFFF;
+  static const highest = -1 >>> 1;
 
   static IntRange open(int from, int to) {
     return IntRange._(_IntCut.open(from), _IntCut.open(to));

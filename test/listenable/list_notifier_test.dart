@@ -5,11 +5,11 @@ import 'package:test/test.dart';
 import 'fake_callback.dart';
 
 void main() {
-  late ListNotifier<int, Object> notifier;
-  late ListListenable<int, Object> listenable;
+  late ListNotifier<Object> notifier;
+  late ListListenable<Object> listenable;
 
   setUp(() {
-    notifier = ListNotifier<int, Object>();
+    notifier = ListNotifier<Object>(3);
     listenable = notifier;
   });
 

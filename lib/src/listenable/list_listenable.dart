@@ -1,7 +1,7 @@
 import 'listenable.dart';
 
-abstract class ListListenable<KEY, T> {
-  Listenable<T> listenable(KEY? key);
+abstract class ListListenable<T> {
+  Listenable<T> listenable(int? i);
 
   Listenable<void> anyListenable();
 }

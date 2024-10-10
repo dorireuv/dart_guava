@@ -3,28 +3,31 @@ import 'list_listenable.dart';
 import 'listenable.dart';
 import 'notifier.dart';
 
-class ListNotifier<KEY, T> implements ListListenable<KEY, T> {
-  final Map<KEY, Notifier<T>> _notifiers = {};
+class ListNotifier<T> implements ListListenable<T> {
+  final int size;
+
+  late final List<Notifier<T>?> _notifiers = List.filled(size, null);
   final Notifier<void> _anyNotifier = Notifier();
   final Listenable<T> _nullListenable = _NullListenable();
 
+  ListNotifier(this.size);
+
   @override
-  Listenable<T> listenable(KEY? key) {
-    return key != null ? _notifier(key) : _nullListenable;
+  Listenable<T> listenable(int? i) {
+    return i != null ? _notifier(i) : _nullListenable;
   }
 
   @override
   Listenable<void> anyListenable() => _anyNotifier;
 
-  void notify(KEY key, T v) {
-    _notifier(key).notify(v);
+  void notify(int i, T v) {
+    _notifier(i).notify(v);
     notifyAny();
   }
 
   void notifyAny() => _anyNotifier.notify(null);
 
-  Notifier<T> _notifier(KEY key) =>
-      _notifiers.putIfAbsent(key, () => Notifier<T>());
+  Notifier<T> _notifier(int i) => _notifiers[i] ??= Notifier<T>();
 }
 
 class _NullListenable<T> implements Listenable<T> {

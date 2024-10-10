@@ -6,8 +6,5 @@ class ListAsListSupplier<T> implements ListSupplier<T> {
   ListAsListSupplier(Iterable<T> iterable) : _list = iterable.toList();
 
   @override
-  int get size => _list.length;
-
-  @override
-  T get(int i) => _list[i];
+  T getAt(int i) => _list[i];
 }

@@ -9,7 +9,7 @@ void main() {
   late ListListenable<Object> listenable;
 
   setUp(() {
-    notifier = ListNotifier<Object>(3);
+    notifier = ListNotifier<Object>();
     listenable = notifier;
   });
 

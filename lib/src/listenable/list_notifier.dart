@@ -4,13 +4,9 @@ import 'listenable.dart';
 import 'notifier.dart';
 
 class ListNotifier<T> implements ListListenable<T> {
-  final int size;
-
-  late final List<Notifier<T>?> _notifiers = List.filled(size, null);
+  final Map<int, Notifier<T>> _notifiers = {};
   final Notifier<void> _anyNotifier = Notifier();
   final Listenable<T> _nullListenable = _NullListenable();
-
-  ListNotifier(this.size);
 
   @override
   Listenable<T> listenable(int? i) {
@@ -27,7 +23,8 @@ class ListNotifier<T> implements ListListenable<T> {
 
   void notifyAny() => _anyNotifier.notify(null);
 
-  Notifier<T> _notifier(int i) => _notifiers[i] ??= Notifier<T>();
+  Notifier<T> _notifier(int i) =>
+      _notifiers.putIfAbsent(i, () => Notifier<T>());
 }
 
 class _NullListenable<T> implements Listenable<T> {

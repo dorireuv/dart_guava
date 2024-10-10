@@ -12,5 +12,6 @@ export 'src/random/random_extension.dart';
 export 'src/range/int_range.dart';
 export 'src/string/char_code.dart';
 export 'src/string/string_format.dart';
+export 'src/supplier/list_supplier.dart';
 export 'src/supplier/supplier.dart';
 export 'src/supplier/suppliers.dart';

@@ -38,7 +38,12 @@ mixin ListChangeNotifier<T> on ListSupplier<T> implements ListListenable<T> {
     }
   }
 
-  void notifyAny(void Function() change) {
+  void notifyAllOnChange(void Function() change) {
+    change();
+    notifyAll();
+  }
+
+  void notifyAnyOnChange(void Function() change) {
     change();
     _notifier.notifyAny();
   }

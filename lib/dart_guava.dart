@@ -4,6 +4,8 @@ library;
 export 'src/check/check.dart';
 export 'src/iterable/iterable_extension.dart';
 export 'src/listenable/callback.dart';
+export 'src/listenable/change_notifier.dart';
+export 'src/listenable/list_change_notifier.dart';
 export 'src/listenable/list_listenable.dart';
 export 'src/listenable/list_notifier.dart';
 export 'src/listenable/listenable.dart';

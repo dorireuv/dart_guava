@@ -1,3 +1,5 @@
+import 'package:built_collection/built_collection.dart';
+
 import '../supplier/list_supplier.dart';
 import 'list_listenable.dart';
 import 'list_notifier.dart';
@@ -5,6 +7,9 @@ import 'listenable.dart';
 
 mixin ListChangeNotifier<T> on ListSupplier<T> implements ListListenable<T> {
   final _notifier = ListNotifier<T>();
+
+  @override
+  BuiltMap<int, Listenable<T>> allListenables() => _notifier.allListenables();
 
   @override
   Listenable<T> listenable(int? i) => _notifier.listenable(i);

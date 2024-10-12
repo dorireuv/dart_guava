@@ -1,6 +1,7 @@
 /// Common libraries for dart based on Java's Guava library.
 library;
 
+export 'src/bool/if_then.dart';
 export 'src/check/check.dart';
 export 'src/iterable/iterable_extension.dart';
 export 'src/listenable/callback.dart';
@@ -15,5 +16,6 @@ export 'src/range/int_range.dart';
 export 'src/string/char_code.dart';
 export 'src/string/string_format.dart';
 export 'src/supplier/list_supplier.dart';
+export 'src/supplier/mutable_supplier.dart';
 export 'src/supplier/supplier.dart';
 export 'src/supplier/suppliers.dart';

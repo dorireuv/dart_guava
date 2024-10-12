@@ -1,3 +1,5 @@
+import 'package:built_collection/built_collection.dart';
+
 import 'callback.dart';
 import 'list_listenable.dart';
 import 'listenable.dart';
@@ -7,6 +9,9 @@ class ListNotifier<T> implements ListListenable<T> {
   final Map<int, Notifier<T>> _notifiers = {};
   final Notifier<void> _anyNotifier = Notifier();
   final Listenable<T> _nullListenable = _NullListenable();
+
+  @override
+  BuiltMap<int, Listenable<T>> allListenables() => _notifiers.build();
 
   @override
   Listenable<T> listenable(int? i) {
@@ -20,6 +25,8 @@ class ListNotifier<T> implements ListListenable<T> {
     _notifier(i).notify(v);
     notifyAny();
   }
+
+  void notifyAll() {}
 
   void notifyAny() => _anyNotifier.notify(null);
 

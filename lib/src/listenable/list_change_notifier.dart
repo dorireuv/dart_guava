@@ -59,8 +59,13 @@ mixin ListChangeNotifier<T>
     notifyAll();
   }
 
-  void notifyAnyOnChange(void Function() change) {
-    change();
+  bool notifyAnyIfChanged(bool Function() change) {
+    final isChanged = change();
+    if (!isChanged) {
+      return false;
+    }
+
     _notifier.notifyAny(get());
+    return true;
   }
 }

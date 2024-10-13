@@ -30,7 +30,7 @@ void main() {
 
       verify(callback1('foo')).called(1);
       verifyNever(callback2('foo'));
-      verify(anyCallback(null)).called(1);
+      verifyNever(anyCallback(any));
     });
 
     test('multiple listeners notifies', () {
@@ -51,7 +51,7 @@ void main() {
       verify(callback12('foo')).called(1);
       verifyNever(callback21('foo'));
       verifyNever(callback22('foo'));
-      verify(anyCallback(null)).called(1);
+      verifyNever(anyCallback(any));
     });
 
     test('null key ignores', () {
@@ -63,13 +63,13 @@ void main() {
       notifier.notify(1, 'foo');
 
       verifyNever(callback('foo'));
-      verify(anyCallback(null)).called(1);
+      verifyNever(anyCallback(any));
     });
   });
 
   group('notifyAny', () {
     test('no listeners returns normally', () {
-      expect(() => notifier.notifyAny(), returnsNormally);
+      expect(() => notifier.notifyAny([]), returnsNormally);
     });
 
     test('single listener notifies', () {
@@ -78,10 +78,10 @@ void main() {
       listenable.listenable(1).addListener(callback);
       listenable.anyListenable().addListener(anyCallback);
 
-      notifier.notifyAny();
+      notifier.notifyAny([]);
 
-      verifyNever(callback(null));
-      verify(anyCallback(null)).called(1);
+      verifyNever(callback(any));
+      verify(anyCallback([])).called(1);
     });
 
     test('multiple listeners notifies', () {
@@ -92,11 +92,11 @@ void main() {
       listenable.anyListenable().addListener(anyCallback1);
       listenable.anyListenable().addListener(anyCallback2);
 
-      notifier.notifyAny();
+      notifier.notifyAny([]);
 
-      verifyNever(callback(null));
-      verify(anyCallback1(null)).called(1);
-      verify(anyCallback2(null)).called(1);
+      verifyNever(callback(any));
+      verify(anyCallback1([])).called(1);
+      verify(anyCallback2([])).called(1);
     });
   });
 }

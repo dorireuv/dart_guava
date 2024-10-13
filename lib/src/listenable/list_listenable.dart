@@ -7,5 +7,5 @@ abstract class ListListenable<T> {
 
   Listenable<T> listenable(int? i);
 
-  Listenable<void> anyListenable();
+  Listenable<BuiltList<T>> anyListenable();
 }

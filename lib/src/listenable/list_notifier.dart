@@ -7,7 +7,7 @@ import 'notifier.dart';
 
 class ListNotifier<T> implements ListListenable<T> {
   final Map<int, Notifier<T>> _notifiers = {};
-  final Notifier<void> _anyNotifier = Notifier();
+  final Notifier<BuiltList<T>> _anyNotifier = Notifier();
   final Listenable<T> _nullListenable = _NullListenable();
 
   @override
@@ -19,16 +19,11 @@ class ListNotifier<T> implements ListListenable<T> {
   }
 
   @override
-  Listenable<void> anyListenable() => _anyNotifier;
+  Listenable<BuiltList<T>> anyListenable() => _anyNotifier;
 
-  void notify(int i, T v) {
-    _notifier(i).notify(v);
-    notifyAny();
-  }
+  void notify(int i, T v) => _notifier(i).notify(v);
 
-  void notifyAll() {}
-
-  void notifyAny() => _anyNotifier.notify(null);
+  void notifyAny(Iterable<T> v) => _anyNotifier.notify(v.toBuiltList());
 
   Notifier<T> _notifier(int i) =>
       _notifiers.putIfAbsent(i, () => Notifier<T>());

@@ -1,11 +1,7 @@
-import 'package:built_collection/built_collection.dart';
-
-import 'listenable.dart';
+import 'list_callback.dart';
 
 abstract class ListListenable<T> {
-  BuiltMap<int, Listenable<T>> allListenables();
+  void addListener(ListCallback<T> callback);
 
-  Listenable<T> listenable(int? i);
-
-  Listenable<BuiltList<T>> anyListenable();
+  void removeListener(ListCallback<T> callback);
 }

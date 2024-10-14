@@ -19,7 +19,7 @@ void main() {
     });
 
     test('single listener notifies', () {
-      final callback = FakeModelChangeCallbackMock();
+      final callback = FakeCallbackMock.create();
       listenable.addListener(callback);
 
       notifier.notify('foo');
@@ -28,8 +28,8 @@ void main() {
     });
 
     test('multiple listeners notifies', () {
-      final callback1 = FakeModelChangeCallbackMock();
-      final callback2 = FakeModelChangeCallbackMock();
+      final callback1 = FakeCallbackMock.create();
+      final callback2 = FakeCallbackMock.create();
       listenable.addListener(callback1);
       listenable.addListener(callback2);
 

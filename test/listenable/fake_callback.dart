@@ -1,8 +1,11 @@
 import 'package:mockito/mockito.dart';
 
-abstract class FakeModelChangeCallback<T> {
+abstract class FakeCallback<T> {
   void call(T v);
 }
 
-class FakeModelChangeCallbackMock<T> extends Mock
-    implements FakeModelChangeCallback<T> {}
+class FakeCallbackMock<T> extends Mock implements FakeCallback<T> {
+  static FakeCallback<T> create<T>() => FakeCallbackMock._();
+
+  FakeCallbackMock._();
+}

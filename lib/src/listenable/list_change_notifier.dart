@@ -59,6 +59,19 @@ mixin ListChangeNotifier<T>
     notifyAll();
   }
 
+  V notifyAllIfChanged<V>(V Function() change) {
+    final before = get();
+    final res = change();
+    final after = get();
+    for (final i in allListenables().keys) {
+      if (after[i] != before[i]) {
+        notify(i);
+      }
+    }
+
+    return res;
+  }
+
   bool notifyAnyIfChanged(bool Function() change) {
     final isChanged = change();
     if (!isChanged) {

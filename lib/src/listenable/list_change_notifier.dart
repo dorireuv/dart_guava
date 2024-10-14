@@ -17,6 +17,9 @@ mixin ListChangeNotifier<T>
   @override
   void removeListener(ListCallback<T> c) => _notifier.removeListener(c);
 
+  @override
+  void dispose() => _notifier.dispose();
+
   V notifyOnChange<V>(int i, V Function(int i) change) {
     final v = change(i);
     _notify(i);

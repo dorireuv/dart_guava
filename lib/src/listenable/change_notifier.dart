@@ -12,6 +12,9 @@ mixin ChangeNotifier<T> on Supplier<T> implements Listenable<T> {
   @override
   void removeListener(Callback<T> c) => _notifier.removeListener(c);
 
+  @override
+  void dispose() => _notifier.dispose();
+
   V notify<V>(V Function() change) {
     final v = change();
     _notify();

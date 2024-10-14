@@ -5,13 +5,14 @@ class ListNotifier<T> implements ListListenable<T> {
   final List<ListCallback<T>> _callbacks = [];
 
   @override
-  void addListener(ListCallback<T> callback) {
-    _callbacks.add(callback);
-  }
+  void addListener(ListCallback<T> c) => _callbacks.add(c);
 
   @override
-  void removeListener(ListCallback<T> callback) {
-    _callbacks.remove(callback);
+  void removeListener(ListCallback<T> c) => _callbacks.remove(c);
+
+  @override
+  void dispose() {
+    _callbacks.clear();
   }
 
   void notify(int i, T v) {
